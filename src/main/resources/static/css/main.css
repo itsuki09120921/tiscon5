@@ -193,6 +193,29 @@ ul.label {
     border: 1px solid rgba(34,36,38,.15);
 }
 
-td {
-    width: 400px;
+/*
+tbody {
+    width: 500px;
+}
+
+th {
+    width: 250px;
+}
+*/
+/*td {
+    width: 310px;
+}*/
+
+/*.right {
+    float: right;
+}
+
+.left {
+    float: left;
+}
+*/
+/*.relative{
+    position: relative;
+
+    bottom: 0px;
 }

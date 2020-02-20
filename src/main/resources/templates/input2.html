@@ -15,9 +15,6 @@
 <div class="container">
     <form th:action="@{/submit}" th:object="${userOrderForm}" class="form-horizontal" method="post">
         <h1>お見積り情報入力</h1>
-        <ul th:if="${#fields.hasErrors('all')}">
-            <li th:each="err : ${#fields.errors('all')}" th:text="${err}"></li>
-        </ul>
         <div class="col-sm-12">
             <fieldset>
                 <legend>個人情報</legend>
@@ -39,19 +36,31 @@
                 <div class="form-group">
                     <label for="box">段ボールの個数</label>
                     <input type="text" id="box" name="box" th:field="*{box}" class="form-control" value="10"/>
+                    <ul th:if="${#fields.hasErrors('box')}">
+                        <li class="error-message" th:each="err : ${#fields.errors('box')}" th:text="${err}"></li>
+                    </ul>
                 </div>
                 <div class="form-group">
                     <label for="bed">ベッドの個数</label>
                     <input type="text" id="bed" name="bed" th:field="*{bed}" class="form-control" value="3"/>
+                    <ul th:if="${#fields.hasErrors('bed')}">
+                        <li class="error-message" th:each="err : ${#fields.errors('bed')}" th:text="${err}"></li>
+                    </ul>
                 </div>
                 <div class="form-group">
                     <label for="bicycle">自転車の個数</label>
                     <input type="text" id="bicycle" name="bicycle" th:field="*{bicycle}" class="form-control" value="1"/>
+                    <ul th:if="${#fields.hasErrors('bicycle')}">
+                        <li class="error-message" th:each="err : ${#fields.errors('bicycle')}" th:text="${err}"></li>
+                    </ul>
                 </div>
                 <div class="form-group">
                     <label for="washingMachine">洗濯機の個数</label>
                     <input type="text" id="washingMachine" name="washingMachine" th:field="*{washingMachine}" class="form-control"
                            value="1"/>
+                    <ul th:if="${#fields.hasErrors('washingMachine')}">
+                        <li class="error-message" th:each="err : ${#fields.errors('washingMachine')}" th:text="${err}"></li>
+                    </ul>
                 </div>
                 <div class="form-group">
                     <label for="washingMachineInstallation">洗濯機の設置工事申し込み</label>
