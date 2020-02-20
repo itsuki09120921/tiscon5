@@ -95,7 +95,7 @@ public class EstimateController {
 
         model.addAttribute("prefectures", estimateDAO.getAllPrefectures());
         model.addAttribute("userOrderForm", userOrderForm);
-        return "confirm";
+        return "result1";
     }
 
     /**
@@ -171,7 +171,9 @@ public class EstimateController {
      */
 
     @PostMapping(value = "input3", params = "write")
-    String input3(Model model) {
+    String input3(UserOrderForm userOrderForm, UserOrderForm2 userOrderForm2, Model model) {
+        //userOrderFormからuserOrderForm2へ値を渡す
+        BeanUtils.copyProperties(userOrderForm, userOrderForm2);
         if (!model.containsAttribute("userOrderForm2")) {
             model.addAttribute("userOrderForm2", new UserOrderForm2());
         }

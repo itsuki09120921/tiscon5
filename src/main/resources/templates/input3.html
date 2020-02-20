@@ -52,6 +52,15 @@
                     <button type="submit" name="verify" class="btn btn-primary">確認</button>
                 </div>
             </div>
+
+            <input type="hidden" name="oldPrefectureId" id="oldPrefectureId" th:value="*{oldPrefectureId}"/>
+            <input type="hidden" name="newPrefectureId" id="newPrefectureId" th:value="*{newPrefectureId}"/>
+            <input type="hidden" name="box" id="box" th:value="*{box}"/>
+            <input type="hidden" name="bed" id="bed" th:value="*{bed}"/>
+            <input type="hidden" name="bicycle" id="bicycle" th:value="*{bicycle}"/>
+            <input type="hidden" name="washingMachine" id="washingMachine" th:value="*{washingMachine}"/>
+            <input type="hidden" name="washingMachineInstallation" id="washingMachineInstallation" th:value="*{washingMachineInstallation}"/>
+
         </div>
     </form>
 </div>
