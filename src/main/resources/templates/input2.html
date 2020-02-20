@@ -17,16 +17,19 @@
         <h1>お見積り情報入力</h1>
         <div class="col-sm-12">
             <fieldset>
-                <legend>個人情報</legend>
-                <div class="form-group">
+                <legend>お引越し住所情報</legend>
+                <div style="float:left;" class="form-group">
                     <label for="oldPrefectureId">転居元住所（都道府県）</label>
-                    <select id="oldPrefectureId" name="oldPrefectureId" class="form-control">
+                    <select id="oldPrefectureId" name="oldPrefectureId" class="form-control"style="width: 100%;">
                         <option th:each="prefecture : ${prefectures}" th:value="${prefecture.prefectureId}" th:field="*{oldPrefectureId}">[[${prefecture.prefectureName}]]</option>
                     </select>
                 </div>
-                <div class="form-group">
+                <div style="float:left;">
+                    <font size="15">   →
+                    </font></div>
+                <div style="float:left;" class="form-group">
                     <label for="newPrefectureId">転居先住所（都道府県）</label>
-                    <select id="newPrefectureId" name="newPrefectureId" class="form-control">
+                    <select id="newPrefectureId" name="newPrefectureId" class="form-control"style="width: 100%;">
                         <option th:each="prefecture : ${prefectures}" th:value="${prefecture.prefectureId}" th:field="*{newPrefectureId}">[[${prefecture.prefectureName}]]</option>
                     </select>
                 </div>
