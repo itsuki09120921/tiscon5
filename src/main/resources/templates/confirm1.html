@@ -13,7 +13,7 @@
 <body>
 <nav th:insert="header.html :: header"></nav>
 <div class="container">
-  <form th:action="@{/order}" th:object="${userOrderForm2}" class="form-horizontal" method="post">
+  <form th:action="@{/last}" th:object="${userOrderForm2}" class="form-horizontal" method="post">
     <h1>お見積り情報確認</h1>
     <ul th:if="${#fields.hasErrors('all')}">
       <li th:each="err : ${#fields.errors('all')}" th:text="${err}"></li>

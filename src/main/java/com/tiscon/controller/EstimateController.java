@@ -149,9 +149,12 @@ public class EstimateController {
      * @return 遷移先
      */
     @PostMapping(value = "result1", params = "calculation")
-    String calculation(UserOrderForm userOrderForm, Model model) {
-
-
+    String calculation(@Validated UserOrderForm userOrderForm, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            model.addAttribute("prefectures", estimateDAO.getAllPrefectures());
+            model.addAttribute("userOrderForm", userOrderForm);
+            return "input2";
+        }
         //料金の計算を行う。
         UserOrderDto dto = new UserOrderDto();
         BeanUtils.copyProperties(userOrderForm, dto);
@@ -229,14 +232,14 @@ public class EstimateController {
      * @param model         遷移先に連携するデータ
      * @return 遷移先
      */
-    @PostMapping(value = "order", params = "complete")
-    String complete(@Validated UserOrderForm userOrderForm2, BindingResult result, Model model) {
-        if (result.hasErrors()) {
-
-            model.addAttribute("prefectures", estimateDAO.getAllPrefectures());
-            model.addAttribute("userOrderForm2", userOrderForm2);
-            return "confirm1";
-        }
+    @PostMapping(value = "last", params = "complete")
+    String complete(@Validated UserOrderForm2 userOrderForm2, BindingResult result, Model model) {
+//        if (result.hasErrors()) {
+//
+//            model.addAttribute("prefectures", estimateDAO.getAllPrefectures());
+//            model.addAttribute("userOrderForm2", userOrderForm2);
+//            return "confirm1";
+//        }
 
         UserOrderDto dto = new UserOrderDto();
         BeanUtils.copyProperties(userOrderForm2, dto);

@@ -15,9 +15,9 @@
 <div class="container">
     <form th:action="@{/confirm1}" th:object="${userOrderForm2}" class="form-horizontal" method="post">
         <h1>お見積り情報入力</h1>
-        <ul th:if="${#fields.hasErrors('all')}">
-            <li th:each="err : ${#fields.errors('all')}" th:text="${err}"></li>
-        </ul>
+<!--        <ul th:if="${#fields.hasErrors('all')}">-->
+<!--            <li th:each="err : ${#fields.errors('all')}" th:text="${err}"></li>-->
+<!--        </ul>-->
         <div class="col-sm-12">
             <fieldset>
                 <legend>個人情報</legend>
