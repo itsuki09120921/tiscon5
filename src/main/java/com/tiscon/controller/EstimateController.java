@@ -73,7 +73,7 @@ public class EstimateController {
      * @param model 遷移先に連携するデータ
      * @return 遷移先
      */
-    @PostMapping(value = "submit", params = "backToTop")
+    @PostMapping(value = "", params = "backToTop")
     String backToTop(Model model) {
         return "top";
     }
@@ -95,11 +95,11 @@ public class EstimateController {
 
         model.addAttribute("prefectures", estimateDAO.getAllPrefectures());
         model.addAttribute("userOrderForm", userOrderForm);
-        return "confirm";
+        return "result1";
     }
 
     /**
-     * 入力画面に戻る。
+     * (2)の入力画面に戻る。
      *
      * @param userOrderForm 顧客が入力した見積もり依頼情報
      * @param model         遷移先に連携するデータ
@@ -110,6 +110,20 @@ public class EstimateController {
         model.addAttribute("prefectures", estimateDAO.getAllPrefectures());
         model.addAttribute("userOrderForm", userOrderForm);
         return "input2";
+    }
+
+    /**
+     * (5)の入力画面に戻る。
+     *
+     * @param userOrderForm2 顧客が入力した見積もり依頼情報
+     * @param model         遷移先に連携するデータ
+     * @return 遷移先
+     */
+    @PostMapping(value = "comfirm1", params = "backToInput")
+    String backToInput3(UserOrderForm2 userOrderForm2, Model model) {
+        model.addAttribute("prefectures", estimateDAO.getAllPrefectures());
+        model.addAttribute("userOrderForm", userOrderForm2);
+        return "input3";
     }
 
     /**
@@ -157,7 +171,9 @@ public class EstimateController {
      */
 
     @PostMapping(value = "input3", params = "write")
-    String input3(Model model) {
+    String input3(UserOrderForm userOrderForm, UserOrderForm2 userOrderForm2, Model model) {
+        //userOrderFormからuserOrderForm2へ値を渡す
+        BeanUtils.copyProperties(userOrderForm, userOrderForm2);
         if (!model.containsAttribute("userOrderForm2")) {
             model.addAttribute("userOrderForm2", new UserOrderForm2());
         }
@@ -167,24 +183,56 @@ public class EstimateController {
     }
 
     /**
-     * 申し込み完了画面に遷移する。
+     * （6）確認画面に遷移する。
      *
-     * @param userOrderForm 顧客が入力した見積もり依頼情報
+     * @param model 遷移先に連携するデータ
+     * @return 遷移先
+     */
+
+    @PostMapping(value = "confirm1", params = "verify")
+    String confirm1(UserOrderForm userOrderForm, UserOrderForm2 userOrderForm2, Model model) {
+        //userOrderFormからuserOrderForm2へ値を渡す
+        BeanUtils.copyProperties(userOrderForm, userOrderForm2);
+        model.addAttribute("prefectures", estimateDAO.getAllPrefectures());
+        model.addAttribute("userOrderForm2", userOrderForm2);
+        return "confirm1";
+    }
+
+//    /**
+//     * (6)の確認画面に戻る。
+//     *
+//     * @param userOrderForm 顧客が入力した見積もり依頼情報
+//     * @param model         遷移先に連携するデータ
+//     * @return 遷移先
+//     */
+//    @PostMapping(value = "order", params = "backToConfirm")
+//    String backToConfirm1(UserOrderForm userOrderForm, UserOrderForm2 userOrderForm2, Model model) {
+//        //userOrderFormからuserOrderForm2へ値を渡す
+//        BeanUtils.copyProperties(userOrderForm, userOrderForm2);
+//        model.addAttribute("prefectures", estimateDAO.getAllPrefectures());
+//        model.addAttribute("userOrderForm", userOrderForm);
+//        return "confirm1";
+//    }
+
+    /**
+     * (7)申し込み完了画面に遷移する。
+     *
+     * @param userOrderForm2 顧客が入力した見積もり依頼情報
      * @param result        精査結果
      * @param model         遷移先に連携するデータ
      * @return 遷移先
      */
     @PostMapping(value = "order", params = "complete")
-    String complete(@Validated UserOrderForm userOrderForm, BindingResult result, Model model) {
+    String complete(@Validated UserOrderForm userOrderForm2, BindingResult result, Model model) {
         if (result.hasErrors()) {
 
             model.addAttribute("prefectures", estimateDAO.getAllPrefectures());
-            model.addAttribute("userOrderForm", userOrderForm);
+            model.addAttribute("userOrderForm2", userOrderForm2);
             return "confirm1";
         }
 
         UserOrderDto dto = new UserOrderDto();
-        BeanUtils.copyProperties(userOrderForm, dto);
+        BeanUtils.copyProperties(userOrderForm2, dto);
         estimateService.registerOrder(dto);
 
         return "complete";
