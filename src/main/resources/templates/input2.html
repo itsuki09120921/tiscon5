@@ -25,8 +25,7 @@
                     </select>
                 </div>
                 <div style="float:left;">
-                    <font size="15">   →
-                    </font></div>
+                    <font size="15">　→　</font></div>
                 <div style="float:left;" class="form-group">
                     <label for="newPrefectureId">転居先住所（都道府県）</label>
                     <select id="newPrefectureId" name="newPrefectureId" class="form-control"style="width: 100%;">
@@ -34,30 +33,38 @@
                     </select>
                 </div>
             </fieldset>
+            <div style="clear:both;">
+                <font size="5">　　　</font></div>
             <fieldset>
                 <legend>荷物情報</legend>
-                <div class="form-group">
+                <div style="float:left;"　class="form-group">
                     <label for="box">段ボールの個数</label>
                     <input type="text" id="box" name="box" th:field="*{box}" class="form-control" value="10"/>
                     <ul th:if="${#fields.hasErrors('box')}">
                         <li class="error-message" th:each="err : ${#fields.errors('box')}" th:text="${err}"></li>
                     </ul>
                 </div>
-                <div class="form-group">
+                <div style="float:left;">
+                    <font size="15">　　　</font></div>
+                <div style="float:left;"　class="form-group">
                     <label for="bed">ベッドの個数</label>
                     <input type="text" id="bed" name="bed" th:field="*{bed}" class="form-control" value="3"/>
                     <ul th:if="${#fields.hasErrors('bed')}">
                         <li class="error-message" th:each="err : ${#fields.errors('bed')}" th:text="${err}"></li>
                     </ul>
                 </div>
-                <div class="form-group">
+                <div style="clean:both;">
+                    <font size="15">　　　</font></div>
+                <div style="float:left;"　class="form-group">
                     <label for="bicycle">自転車の個数</label>
                     <input type="text" id="bicycle" name="bicycle" th:field="*{bicycle}" class="form-control" value="1"/>
                     <ul th:if="${#fields.hasErrors('bicycle')}">
                         <li class="error-message" th:each="err : ${#fields.errors('bicycle')}" th:text="${err}"></li>
                     </ul>
                 </div>
-                <div class="form-group">
+                <div style="float:left;">
+                    <font size="15">　　　</font></div>
+                <div style="float:left;"　class="form-group">
                     <label for="washingMachine">洗濯機の個数</label>
                     <input type="text" id="washingMachine" name="washingMachine" th:field="*{washingMachine}" class="form-control"
                            value="1"/>
@@ -65,14 +72,17 @@
                         <li class="error-message" th:each="err : ${#fields.errors('washingMachine')}" th:text="${err}"></li>
                     </ul>
                 </div>
-                <div class="form-group">
+                <div style="clear:both;"　class="form-group">
                     <label for="washingMachineInstallation">洗濯機の設置工事申し込み</label>
-                    <select id="washingMachineInstallation" name="washingMachineInstallation" class="form-control" th:field="*{washingMachineInstallation}">
+                    <select style="width: 10%" id="washingMachineInstallation" name="washingMachineInstallation" class="form-control" th:field="*{washingMachineInstallation}">
                         <option th:value="false" th:text="なし">なし</option>
                         <option th:value="true" th:text="あり">あり</option>
                     </select>
                 </div>
             </fieldset>
+            <div style="clear:both
+                                   ;">
+                <font size="5">　　　</font></div>
             <div class="form-group">
                 <div class="text-center">
                     <button type="submit" name="backToTop" class="btn btn-primary">TOPへ戻る</button>
