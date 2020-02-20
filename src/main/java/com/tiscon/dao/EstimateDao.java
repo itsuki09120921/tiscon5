@@ -132,13 +132,13 @@ public class EstimateDao {
         int truck1 = 0;
         int truck2 = 0;
         truck2 = boxNum / 200;
-        if (boxNum % 20 >= 80)
+        if (boxNum % 200 >= 80)
             truck2++;
-        else if (boxNum % 20 > 0)
+        else if (boxNum % 200 > 0)
             truck1++;
 
-        String sql1 = "SELECT PRICE*truck1 FROM TRUCK_CAPACITY WHERE TRUCK_ID = 1";
-        String sql2 = "SELECT PRICE*truck2 FROM TRUCK_CAPACITY WHERE TRUCK_ID = 2";
+        String sql1 = "SELECT PRICE*:truck1 FROM TRUCK_CAPACITY WHERE TRUCK_ID = 1";
+        String sql2 = "SELECT PRICE*:truck2 FROM TRUCK_CAPACITY WHERE TRUCK_ID = 2";
 
         SqlParameterSource paramSource1 = new MapSqlParameterSource("truck1", truck1);
         SqlParameterSource paramSource2 = new MapSqlParameterSource("truck2", truck2);
