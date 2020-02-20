@@ -13,7 +13,7 @@
 <body>
 <nav th:insert="header.html :: header"></nav>
 <div class="container">
-    <form th:action="@{/order}" th:object="${userOrderForm}" class="form-horizontal" method="post">
+    <form th:action="@{/input3}" th:object="${userOrderForm}" class="form-horizontal" method="post">
         <h1>概算お見積り結果</h1>
         <div class="col-sm-12">
             <!--<div class="left">-->
@@ -96,7 +96,7 @@
                 <div class="form-group">
                     <div class="text-center">
                         <button type="submit" name="backToConfirm" class="btn btn-primary">戻る</button>
-                        <button type="submit" name="input3" class="btn btn-primary">個人情報入力</button>
+                        <button type="submit" name="write" class="btn btn-primary">個人情報入力</button>
                     </div>
                 </div>
         </div>
