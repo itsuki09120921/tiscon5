@@ -190,13 +190,20 @@ public class EstimateController {
      */
 
     @PostMapping(value = "confirm1", params = "verify")
-    String confirm1(UserOrderForm userOrderForm, UserOrderForm2 userOrderForm2, Model model) {
-        //userOrderFormからuserOrderForm2へ値を渡す
-        BeanUtils.copyProperties(userOrderForm, userOrderForm2);
+    String confirm1(@Validated UserOrderForm2 userOrderForm2, BindingResult result, Model model) {
+
+//        //userOrderFormからuserOrderForm2へ値を渡す
+//        BeanUtils.copyProperties(userOrderForm, userOrderForm2);
+        if (result.hasErrors()) {
+            model.addAttribute("prefectures", estimateDAO.getAllPrefectures());
+            model.addAttribute("userOrderForm2", userOrderForm2);
+            return "input3";
+        }
         model.addAttribute("prefectures", estimateDAO.getAllPrefectures());
         model.addAttribute("userOrderForm2", userOrderForm2);
         return "confirm1";
     }
+
 
 //    /**
 //     * (6)の確認画面に戻る。
