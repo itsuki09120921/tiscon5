@@ -35,13 +35,14 @@ public class EstimateController {
         this.estimateService = estimateService;
     }
 
+    /** (1)Top画面*/
     @GetMapping("")
     String index(Model model) {
         return "top";
     }
 
     /**
-     * 入力画面に遷移する。
+     * （２）見積もり必要項目入力画面に遷移する。
      *
      * @param model 遷移先に連携するデータ
      * @return 遷移先
@@ -103,7 +104,7 @@ public class EstimateController {
      * @param model         遷移先に連携するデータ
      * @return 遷移先
      */
-    @PostMapping(value = "result", params = "backToInput")
+    @PostMapping(value = "result1", params = "backToInput")
     String backToInput(UserOrderForm userOrderForm, Model model) {
         model.addAttribute("prefectures", estimateDAO.getAllPrefectures());
         model.addAttribute("userOrderForm", userOrderForm);
@@ -148,6 +149,22 @@ public class EstimateController {
     }
 
     /**
+     * （5）個人情報入力画面に遷移する。
+     *
+     * @param model 遷移先に連携するデータ
+     * @return 遷移先
+     */
+    @GetMapping("input3")
+    String input3(Model model) {
+        if (!model.containsAttribute("userOrderForm")) {
+            model.addAttribute("userOrderForm", new UserOrderForm());
+        }
+
+        model.addAttribute("prefectures", estimateDAO.getAllPrefectures());
+        return "input3";
+    }
+
+    /**
      * 申し込み完了画面に遷移する。
      *
      * @param userOrderForm 顧客が入力した見積もり依頼情報
@@ -161,7 +178,7 @@ public class EstimateController {
 
             model.addAttribute("prefectures", estimateDAO.getAllPrefectures());
             model.addAttribute("userOrderForm", userOrderForm);
-            return "confirm";
+            return "confirm1";
         }
 
         UserOrderDto dto = new UserOrderDto();
